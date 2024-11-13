@@ -90,16 +90,11 @@ const Reservation = () => {
       return;
     }
 
-    const existingReservation = reservations.find(r => r.facility === facility && r.date === date);
-    if (existingReservation) {
-      alert("Cannot Reserve: You already have a reservation.");
-      return;
-    }
-    const sameDateReservation = reservations.find(r => r.date === date);
-    if (sameDateReservation) {
-      alert("Cannot Reserve: You already have a reservation on this date.");
-      return;
-    }
+    const existingReservation = reservations.find(r => r.facility === facility);
+  if (existingReservation) {
+    alert("Cannot Reserve: You already have a reservation for this facility.");
+    return;
+  }
 
     const newReservation = { facility, date, participants: numParticipants, purpose, isAffiliated: isAffiliated === "Yes"};
     const updatedReservations = [...reservations, newReservation];
@@ -199,4 +194,3 @@ const Reservation = () => {
 };
 
 export default Reservation;
-
