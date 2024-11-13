@@ -7,7 +7,7 @@ const Reservation = () => {
   const [selectedFacilityInfo, setSelectedFacilityInfo] = useState(null);
   const [date, setDate] = useState('');
   const [participants, setParticipants] = useState('');
-  const [isAffiliated, setIsAffiliated] = useState(null);
+  const [isAffiliated, setIsAffiliated] = useState("No");
   const [purpose, setPurpose] = useState('');
   const [reservations, setReservations] = useState([]);
 
@@ -101,7 +101,7 @@ const Reservation = () => {
       return;
     }
 
-    const newReservation = { facility, date, participants: numParticipants, purpose };
+    const newReservation = { facility, date, participants: numParticipants, purpose, isAffiliated: isAffiliated === "Yes"};
     const updatedReservations = [...reservations, newReservation];
     setReservations(updatedReservations);
     localStorage.setItem('reservations', JSON.stringify(updatedReservations));
@@ -199,3 +199,4 @@ const Reservation = () => {
 };
 
 export default Reservation;
+
