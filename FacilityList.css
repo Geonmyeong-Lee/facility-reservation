@@ -6,6 +6,11 @@
     padding-left: 200px;
     padding-right: 200px;
 }
+@media (max-width: 600px) {
+    .facility-list {
+        grid-template-columns: 1fr;
+    }
+}
 .facility-card {
     background-color: #fff;
     border-radius: 10px;
