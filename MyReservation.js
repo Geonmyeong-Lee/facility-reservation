@@ -5,6 +5,7 @@ const MyReservation = () => {
   	const [reservations, setReservations] = useState([]);
 	const [facilities, setFacilities] = useState([]);
 	const [userName, setUserName]= useState(localStorage.getItem("userName") || "John Doe");
+	
 	useEffect(() => {
 		fetch('/Facility_Data.lis')
 		  	.then(response => response.text())
@@ -54,6 +55,10 @@ const MyReservation = () => {
 		const facility = facilities.find(f => f.name === facilityName);
 		return facility ? facility.location : 'Location not available';
 	};
+	const getFacilityAvailability = (facilityName) => {
+		const facility = facilities.find(f => f.name === facilityName);
+		return facility ? facility.available : 'Availability not available';
+	  };
 
   	return (
     	<div className="my-reservations-container">
@@ -71,9 +76,9 @@ const MyReservation = () => {
               		<h3 className="reserved-info">{reservation.facility}</h3>
               		<p>&#9998;{reservation.purpose}</p>
               		<p>&#128197;{reservation.date}</p>
-              		<p>&#9906;{getFacilityLocation(reservation.facility)} + {reservation.participants}</p>
-              		<p>&#9893;{userName}</p>
-              		<p>&#9745;{reservation.isAffiliated ? 'Only for SUNY Korea' : 'Available for All'}</p>
+              		<p>&#9906;{getFacilityLocation(reservation.facility)}</p>
+              		<p>&#9893;{userName} + {reservation.participants}</p>
+              		<p>&#9745;{getFacilityAvailability(reservation.facility)}</p>
               		<button onClick={() => handleCancelReservation(index)}>Cancel Reservation</button>
             	</div>
           	</div>
